@@ -1,5 +1,9 @@
 package id.my.hendisantika.notificationservice.consumer;
 
+import id.my.hendisantika.notificationservice.domain.NotificationLog;
+import id.my.hendisantika.notificationservice.domain.NotificationType;
+import id.my.hendisantika.notificationservice.repository.NotificationLogRepository;
+import id.my.hendisantika.notificationservice.service.NotificationSender;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
