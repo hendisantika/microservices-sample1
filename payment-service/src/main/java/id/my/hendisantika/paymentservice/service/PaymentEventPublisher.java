@@ -39,4 +39,8 @@ public class PaymentEventPublisher {
                 Map.of("orderId", orderId, "status", "SUCCESS"));
     }
 
+    public void publishFailed(UUID orderId) {
+        kafka.send(failed, orderId.toString(),
+                Map.of("orderId", orderId, "status", "FAILED"));
+    }
 }
