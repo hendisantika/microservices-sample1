@@ -1,10 +1,13 @@
 package id.my.hendisantika.orderservice.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import id.my.hendisantika.orderservice.domain.OutboxStatus;
 import id.my.hendisantika.orderservice.repository.OutboxRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by IntelliJ IDEA.
@@ -29,5 +32,29 @@ public class OutboxEventPublisher {
         this.kafka = kafka;
         this.topic = topic;
         this.objectMapper = objectMapper;
+    }
+
+    @Scheduled(fixedDelay = 3000)
+    @Transactional
+    public void publish() {
+        var events = outboxRepository.findByStatus(OutboxStatus.PENDING);
+
+        for (var e : events) {
+            try {
+                Object event =
+                        objectMapper.readValue(e.getPayload(), Object.class);
+
+                kafka.send(
+                        topic,
+                        e.getAggregateId().toString(),
+                        event
+                ).get();
+
+                e.setStatus(OutboxStatus.SENT);
+
+            } catch (Exception ex) {
+                e.setStatus(OutboxStatus.FAILED);
+            }
+        }
     }
 }
