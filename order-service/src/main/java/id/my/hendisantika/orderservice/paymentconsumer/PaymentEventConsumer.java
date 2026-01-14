@@ -2,6 +2,7 @@ package id.my.hendisantika.orderservice.paymentconsumer;
 
 import id.my.hendisantika.orderservice.domain.Order;
 import id.my.hendisantika.orderservice.domain.OrderStatus;
+import id.my.hendisantika.orderservice.repository.OrderRepository;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,6 +1,7 @@
 package id.my.hendisantika.orderservice.idempotency;
 
 import id.my.hendisantika.orderservice.domain.Order;
+import id.my.hendisantika.orderservice.repository.OrderRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
