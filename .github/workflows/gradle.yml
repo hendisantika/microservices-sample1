@@ -20,6 +20,17 @@ jobs:
     permissions:
       contents: read
 
+    strategy:
+      matrix:
+        service:
+          - api-gateway
+          - auth-service
+          - dlt-replay-service
+          - notification-service
+          - order-service
+          - payment-service
+      fail-fast: false
+
     steps:
     - uses: actions/checkout@v6
     - name: Set up JDK 25
@@ -33,7 +44,8 @@ jobs:
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@4d9f0ba0025fe599b4ebab900eb7f3a1d93ef4c2 # v5.0.0
 
-    - name: Build with Gradle Wrapper
+    - name: Build ${{ matrix.service }} with Gradle Wrapper
+      working-directory: ./${{ matrix.service }}
       run: ./gradlew build
 
     # NOTE: The Gradle Wrapper is the default and recommended way to run Gradle (https://docs.gradle.org/current/userguide/gradle_wrapper.html).
@@ -53,6 +65,17 @@ jobs:
     permissions:
       contents: write
 
+    strategy:
+      matrix:
+        service:
+          - api-gateway
+          - auth-service
+          - dlt-replay-service
+          - notification-service
+          - order-service
+          - payment-service
+      fail-fast: false
+
     steps:
     - uses: actions/checkout@v6
     - name: Set up JDK 25
@@ -63,5 +86,7 @@ jobs:
 
     # Generates and submits a dependency graph, enabling Dependabot Alerts for all project dependencies.
     # See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
-    - name: Generate and submit dependency graph
+    - name: Generate and submit dependency graph for ${{ matrix.service }}
       uses: gradle/actions/dependency-submission@4d9f0ba0025fe599b4ebab900eb7f3a1d93ef4c2 # v5.0.0
+      with:
+        build-root-directory: ./${{ matrix.service }}
