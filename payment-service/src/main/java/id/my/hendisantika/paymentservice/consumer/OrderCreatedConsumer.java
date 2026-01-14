@@ -1,5 +1,6 @@
 package id.my.hendisantika.paymentservice.consumer;
 
+import id.my.hendisantika.paymentservice.service.PaymentProcessor;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Component;
