@@ -1,5 +1,6 @@
 package id.my.hendisantika.dltreplayservice.listener;
 
+import id.my.hendisantika.dltreplayservice.service.DltReplayService;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
