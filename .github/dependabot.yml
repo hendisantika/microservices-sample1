@@ -1,7 +1,42 @@
 version: 2
 updates:
-  - package-ecosystem: maven
-    directory: "/"
+  - package-ecosystem: gradle
+    directory: "/api-gateway"
+    schedule:
+      interval: daily
+      time: '05:00'
+      timezone: Asia/Jakarta
+    open-pull-requests-limit: 10
+  - package-ecosystem: gradle
+    directory: "/auth-service"
+    schedule:
+      interval: daily
+      time: '05:00'
+      timezone: Asia/Jakarta
+    open-pull-requests-limit: 10
+  - package-ecosystem: gradle
+    directory: "/dlt-replay-service"
+    schedule:
+      interval: daily
+      time: '05:00'
+      timezone: Asia/Jakarta
+    open-pull-requests-limit: 10
+  - package-ecosystem: gradle
+    directory: "/notification-service"
+    schedule:
+      interval: daily
+      time: '05:00'
+      timezone: Asia/Jakarta
+    open-pull-requests-limit: 10
+  - package-ecosystem: gradle
+    directory: "/order-service"
+    schedule:
+      interval: daily
+      time: '05:00'
+      timezone: Asia/Jakarta
+    open-pull-requests-limit: 10
+  - package-ecosystem: gradle
+    directory: "/payment-service"
     schedule:
       interval: daily
       time: '05:00'
