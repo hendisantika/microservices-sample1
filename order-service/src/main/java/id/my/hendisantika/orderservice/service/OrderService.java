@@ -65,7 +65,11 @@ public class OrderService {
                     .map(Order::getId)
                     .orElseThrow();
         }
+    }
 
-
+    private String buildPayload(UUID orderId, String customerId) {
+        return """
+                    {"orderId":"%s","customerId":"%s"}
+                """.formatted(orderId, customerId);
     }
 }
