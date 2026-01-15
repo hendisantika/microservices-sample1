@@ -253,15 +253,28 @@ cd order-service
 
 ## How to Run
 
+> **📖 Detailed Infrastructure Guide**: See [INFRASTRUCTURE.md](INFRASTRUCTURE.md) for comprehensive documentation on managing Kafka, MySQL, Redis, and troubleshooting.
+
 ### 1. Start Infrastructure
 
 ```bash
 # Start Kafka, Zookeeper, MySQL, and Redis
 docker-compose up -d
 
-# Verify services are running
+# Verify services are running (should show "healthy" status)
 docker-compose ps
+
+# View logs if needed
+docker-compose logs -f
 ```
+
+**Infrastructure Components:**
+- **Kafka**: Event streaming (Port 9092)
+- **Kafka UI**: Management interface (Port 8090)
+- **MySQL**: Database (Port 3306)
+- **Redis**: Cache (Port 6379)
+- **Redis Commander**: Redis UI (Port 8081)
+- **Zookeeper**: Kafka coordination (Port 2181)
 
 ### 2. Start Services
 
