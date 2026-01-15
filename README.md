@@ -257,6 +257,15 @@ cd order-service
 
 ### 1. Start Infrastructure
 
+**Option A: Using convenience script (Recommended)**
+
+```bash
+# One-command startup with health checks
+./start-infrastructure.sh
+```
+
+**Option B: Using docker-compose directly**
+
 ```bash
 # Start Kafka, Zookeeper, MySQL, and Redis
 docker-compose up -d
